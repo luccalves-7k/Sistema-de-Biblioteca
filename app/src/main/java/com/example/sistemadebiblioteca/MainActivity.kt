@@ -21,6 +21,10 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material3.Card
 import androidx.compose.material3.Checkbox
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,6 +38,11 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Biblioteca() {
+
+    var nome by remember { mutableStateOf("") }
+    var livro by remember { mutableStateOf("") }
+    var notificacoes by remember { mutableStateOf(false) }
+    var mensagem by remember { mutableStateOf("") }
 
     Column(
         modifier = Modifier
@@ -61,8 +70,10 @@ fun Biblioteca() {
         Spacer(modifier = Modifier.height(30.dp))
 
         OutlinedTextField(
-            value = "",
-            onValueChange = {},
+            value = nome,
+            onValueChange = {
+                nome = it
+            },
             label = {
                 Text("Nome do aluno")
             }
@@ -71,8 +82,10 @@ fun Biblioteca() {
         Spacer(modifier = Modifier.height(15.dp))
 
         OutlinedTextField(
-            value = "",
-            onValueChange = {},
+            value = livro,
+            onValueChange = {
+                livro = it
+            },
             label = {
                 Text("Livro")
             }
@@ -81,9 +94,22 @@ fun Biblioteca() {
         Spacer(modifier = Modifier.height(20.dp))
 
         Button(
-            onClick = {}
+            onClick = {
+                if (nome.isNotEmpty() && livro.isNotEmpty()) {
+                    mensagem = "Empréstimo registrado!"
+                } else {
+                    mensagem = "Preencha os campos!"
+                }
+            }
         ) {
             Text("Registrar empréstimo")
+        }
+
+        if (mensagem.isNotEmpty()) {
+            Text(
+                text = mensagem,
+                fontSize = 16.sp
+            )
         }
 
         Spacer(modifier = Modifier.height(25.dp))
@@ -114,8 +140,10 @@ fun Biblioteca() {
         ) {
 
             Checkbox(
-                checked = false,
-                onCheckedChange = {}
+                checked = notificacoes,
+                onCheckedChange = {
+                    notificacoes = it
+                }
             )
 
             Text(
