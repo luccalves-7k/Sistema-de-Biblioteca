@@ -42,7 +42,7 @@ fun Biblioteca() {
 
             Text(
                 text = "📚",
-                fontSize = 50.sp
+                fontSize = 52.sp
             )
 
             Text(
