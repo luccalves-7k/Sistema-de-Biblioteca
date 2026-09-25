@@ -18,6 +18,9 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.foundation.layout.Row
+import androidx.compose.material3.Card
+import androidx.compose.material3.Checkbox
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -81,6 +84,43 @@ fun Biblioteca() {
             onClick = {}
         ) {
             Text("Registrar empréstimo")
+        }
+
+        Spacer(modifier = Modifier.height(25.dp))
+
+        Card {
+
+            Column(
+                modifier = Modifier.padding(16.dp)
+            ) {
+
+                Text(
+                    text = "📖 Livro em destaque",
+                    fontSize = 18.sp
+                )
+
+                Text(
+                    text = "Noites Brancas"
+                )
+
+                Text(
+                    text = "Indisponivel"
+                )
+            }
+        }
+
+        Row(
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+
+            Checkbox(
+                checked = false,
+                onCheckedChange = {}
+            )
+
+            Text(
+                text = "Receber notificações"
+            )
         }
     }
 }
